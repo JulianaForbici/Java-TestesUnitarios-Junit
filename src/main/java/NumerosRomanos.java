@@ -3,13 +3,13 @@ import java.util.Scanner;
 public class NumerosRomanos {
     private static final int[] VALORES = {1000, 900, 500, 400, 100,  90,  50,  40,  10,   9,   5,   4,  1};
     private static final String[] SIMBOLOS ={"M", "CM","D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV","I"};
-    public static String toRoman(int numero)
+    public static String toRoman(int numeroParaConversao)
     {
-        if (numero < 1 || numero > 3999) {
+        if (numeroParaConversao < 1 || numeroParaConversao > 3999) {
             throw new IllegalArgumentException("Erro! Deve ser entre 1 e 3999");
         }
         StringBuilder sb = new StringBuilder();
-        int restante = numero;
+        int restante = numeroParaConversao;
         for (int i = 0; i < VALORES.length; i++) {
             while (restante >= VALORES[i]) {
                 sb.append(SIMBOLOS[i]);

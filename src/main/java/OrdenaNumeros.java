@@ -9,7 +9,7 @@ public class OrdenaNumeros {
             try {
                 return Integer.parseInt(linha.trim());
             } catch (NumberFormatException ex) {
-                System.out.println("Digite um número inteiro!!");
+                System.out.println("Digite um número inteiro!!!");
             }
         }
     }
