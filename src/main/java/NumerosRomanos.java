@@ -8,8 +8,8 @@ public class NumerosRomanos {
         if (numeroEmRomano < 1 || numeroEmRomano > 3999) {
             throw new IllegalArgumentException("O número digitado deve ser entre 1 e 3999");
         }
-        int[] valores = {1000, 900, 500, 400, 100,  90,  50,  40,  10,   9,   5,   4,  1};
-        String[] simbolos ={"M",  "CM","D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV","I"};
+        int[] valores   = {1000, 900, 500, 400, 100,  90,  50,  40,  10,   9,   5,   4,  1};
+        String[] simbolos = {"M", "CM","D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV","I"};
         // aqui vou guardar o resultado final em romano
         String resultado = "";
         // esse restante vai diminuindo até chegar em zero
@@ -30,7 +30,7 @@ public class NumerosRomanos {
         // loop principal do programa
         while (true) {
             System.out.println("------------------------------------------");
-            System.out.print("Digite um inteiro entre 1 e 3999 || Ou digite 0 para sair: ");
+            System.out.print("Digite um inteiro entre 1 e 3999: ");
             // aqui no if eu confiro se o que o usuário digitou é int
             if (!sc.hasNextInt()) {
                 System.out.println("Você deve digitar um número inteiro!");
@@ -39,21 +39,15 @@ public class NumerosRomanos {
             }
             // se chegou aqui já sei que é um inteiro
             int numeroEmRomano = sc.nextInt();
-            // se o número for 0, eu uso isso como comando para encerrar o programa
-            if (numeroEmRomano == 0) {
-                System.out.println("Programa encerrado.");
-                break;
-            }
             try {
                 // chamo o método que converte o número para romano nessa linha
                 String romano = numerosParaConversao(numeroEmRomano);
                 System.out.println("Número em romano: " + romano);
             } catch (IllegalArgumentException e) {
-                // se o número estiver fora do intervalo 1–3999, cai aqui
+                // se o número estiver fora do intervalo 1–3999 (inclui 0), cai aqui
                 System.out.println("Erro! " + e.getMessage());
             }
-            System.out.println("------------------------------------------");
+            System.out.println();
         }
-        sc.close();
     }
 }

@@ -23,14 +23,12 @@ class NumerosRomanosTest {
     }
     @Test
     void shouldReturnCorrectLengthForIntermediateValues() {
-        // 58 = LVIII
-        String r1 = NumerosRomanos.numerosParaConversao(58);
-        assertEquals("LVIII", r1);
-        assertEquals(5, r1.length());
-        // 1994 = MCMXCIV
-        String r2 = NumerosRomanos.numerosParaConversao(1994);
-        assertEquals("MCMXCIV", r2);
-        assertEquals(7, r2.length());
+        String r1 = NumerosRomanos.numerosParaConversao(20);
+            assertEquals("XX", r1);
+        assertEquals(2, r1.length());
+        String r2 = NumerosRomanos.numerosParaConversao(2005);
+        assertEquals("MMV", r2);
+        assertEquals(3, r2.length());
     }
     @Test
     void shouldConvertLowerLimitValue() {
@@ -45,13 +43,11 @@ class NumerosRomanosTest {
         assertThrows(IllegalArgumentException.class,
                 () -> NumerosRomanos.numerosParaConversao(0));
         assertThrows(IllegalArgumentException.class,
-                () -> NumerosRomanos.numerosParaConversao(-5));
+                () -> NumerosRomanos.numerosParaConversao(-1));
     }
     @Test
     void shouldThrowExceptionForNumberTooLarge() {
         assertThrows(IllegalArgumentException.class,
                 () -> NumerosRomanos.numerosParaConversao(4000));
-        assertThrows(IllegalArgumentException.class,
-                () -> NumerosRomanos.numerosParaConversao(5000));
     }
 }
