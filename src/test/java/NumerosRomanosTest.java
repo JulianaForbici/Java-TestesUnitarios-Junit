@@ -30,7 +30,8 @@ class NumerosRomanosTest {
         assertEquals(3, r2.length());
     }
     @Test
-    void shouldConvertLowerLimitValue() {
+    void shouldConvertLowerLimitValue()
+    {
         assertEquals("I", NumerosRomanos.numerosParaConversao(1));
     }
     @Test
