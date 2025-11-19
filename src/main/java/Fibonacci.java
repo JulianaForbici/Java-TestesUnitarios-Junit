@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Fibonacci {
 
-    // fiz um método que recebe um int n e devolve o n-ésimo número de Fibonacci
+    // fiz um método que recebe um int n e devolve o número de fibonacci
     public static int fibonacci(int n) {
         // aqui eu não deixo usar número negativo
         if (n < 0) {
