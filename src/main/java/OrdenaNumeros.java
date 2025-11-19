@@ -2,10 +2,10 @@ import java.util.Scanner;
 
 public class OrdenaNumeros {
 
-    private static int readFiveNumbers(Scanner sc, String prompt) {
+    private static int readFiveNumbers(Scanner leTerminal, String prompt) {
         while (true) {
             System.out.print(prompt);
-            String row = sc.nextLine();
+            String row = leTerminal.nextLine();
             try {
                 // tento transformar o que a pessoa digitou num int e dá erro se n for int
                 return Integer.parseInt(row.trim());
@@ -28,16 +28,16 @@ public class OrdenaNumeros {
         return a + " " + b + " " + c + " " + d + " " + e;
     }
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner leTerminal = new Scanner(System.in);
         // aqui eu só vou pedindo os 5 valores um por um
-        int a = readFiveNumbers(sc, "**-----Digite o primeiro valor-----**: ");
-        int b = readFiveNumbers(sc, "**-----Digite o segundo valor-----**: ");
-        int c = readFiveNumbers(sc, "**-----Digite o terceiro valor-----**: ");
-        int d = readFiveNumbers(sc, "**-----Digite o quarto valor-----**: ");
-        int e = readFiveNumbers(sc, "**-----Digite o quinto valor-----**: ");
+        int a = readFiveNumbers(leTerminal, "**-----Digite o primeiro valor-----**: ");
+        int b = readFiveNumbers(leTerminal, "**-----Digite o segundo valor-----**: ");
+        int c = readFiveNumbers(leTerminal, "**-----Digite o terceiro valor-----**: ");
+        int d = readFiveNumbers(leTerminal, "**-----Digite o quarto valor-----**: ");
+        int e = readFiveNumbers(leTerminal, "**-----Digite o quinto valor-----**: ");
         // chamo o método que realmente ordena
         String ordered = sortFiveNumbers(a, b, c, d, e);
         System.out.println("Cinco valores ordenados (menor para o maior): " + ordered);
-        sc.close();
+        leTerminal.close();
     }
 }
