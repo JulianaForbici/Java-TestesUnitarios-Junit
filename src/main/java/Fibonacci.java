@@ -16,7 +16,7 @@ public class Fibonacci {
         if (n == 1) {
             return 1;
         }
-        // usando a fórmula: F(n) = F(n - 1) + F(n - 2)
+        // usando a fórmula F(n) = F(n - 1) + F(n - 2)
         return fibonacci(n - 1) + fibonacci(n - 2);
     }
     public static void main(String[] args) {
