@@ -2,14 +2,16 @@ import java.math.BigInteger;
 
 public class Fatorial {
     public static BigInteger fatorial(int numeroFatorial) {
+        // caso base
         if (numeroFatorial < 0) {
             throw new IllegalArgumentException("O número digitado deve ser maior ou igual a 0!");
         }
-        // usei if aqui pq usar else if é desnecessário já que o fluxo saiu do metódo por causa do throw
+        // caso base
         if (numeroFatorial == 0 || numeroFatorial == 1) {
             return BigInteger.ONE;
         }
         // aqui vai cair na recursividade:
+        // retorna n * fatorial(n-1) como BigInteger
         return BigInteger.valueOf(numeroFatorial).multiply(fatorial(numeroFatorial - 1));
     }
     public static void main(String[] args) {
