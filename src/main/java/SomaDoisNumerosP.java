@@ -7,7 +7,7 @@ public class SomaDoisNumerosP {
         if (numeroDigitado <= 1) {
             return 0;
         }
-        // se for ímpar, ignora esse número e chama para o anterior
+        // se for ímpar vai ignorar esse número e chamar o anterior
         if (numeroDigitado % 2 != 0) {
             return soma(numeroDigitado - 1);
         }
@@ -25,12 +25,12 @@ public class SomaDoisNumerosP {
         int numeroDigitado = sc.nextInt();
         // aqui eu garanto que a entrada do usuário é positiva
         if (numeroDigitado < 1) {
-            System.out.println("O número deve ser maior ou igual a 1.");
+            System.out.println("O número deve ser maior ou igual a 1!");
             sc.close();
             return;
         }
         int resultado = soma(numeroDigitado);
-        System.out.println("Soma dos números pares de 1 até " + numeroDigitado + " = " + resultado);
+        System.out.println("Soma dos números pares de 1 até " + numeroDigitado + " é " + resultado);
         sc.close();
     }
 }
