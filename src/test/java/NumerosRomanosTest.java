@@ -1,46 +1,34 @@
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class NumerosRomanosTest {
-    @Test
-    void shouldReturnLengthForNumberOne() {
-        String result = NumerosRomanos.numerosParaConversao(1);
-        assertEquals("I", result);
-        assertEquals(1, result.length());
+    @ParameterizedTest(name = "{0} -> {1}")
+    @DisplayName("testar resultados esperados")
+    @CsvSource({
+            "1, I",
+            "2, II",
+            "5, V",
+            "10, X",
+            "15, XV",
+            "20, XX",
+            "2005, MMV",
+            "1998, MCMXCVIII",
+            "3999, MMMCMXCIX"
+    })
+    void convertsBasicNumbersToRoman(int numero, String esperado) {
+        assertEquals(esperado,
+                NumerosRomanos.numerosParaConversao(numero));
     }
-    @Test
-    void shouldReturnLengthForNumberTwo() {
-        String result = NumerosRomanos.numerosParaConversao(2);
-        assertEquals("II", result);
-        assertEquals(2, result.length());
-    }
-    @Test
-    void shouldReturnLengthNineForNumber3999() {
-        String result = NumerosRomanos.numerosParaConversao(3999);
-        assertEquals("MMMCMXCIX", result);
-        assertEquals(9, result.length());
-    }
-    @Test
-    void shouldReturnCorrectLengthForValues() {
-        String r1 = NumerosRomanos.numerosParaConversao(20);
-        assertEquals("XX", r1);
-        assertEquals(2, r1.length());
-        String r2 = NumerosRomanos.numerosParaConversao(2005);
-        assertEquals("MMV", r2);
-        assertEquals(3, r2.length());
-    }
-    @Test
-    void shouldConvertLowerLimitValue()
-    {
-        assertEquals("I", NumerosRomanos.numerosParaConversao(1));
-    }
-    @Test
-    void shouldThrowExceptionForNumbersExceptions() {
+    @ParameterizedTest
+    @DisplayName("números fora do intervalo devem lançar exceção")
+    @ValueSource(ints = {0, -1, 4000})
+    void throwsOnOutOfRange(int invalido) {
         assertThrows(IllegalArgumentException.class,
-                () -> NumerosRomanos.numerosParaConversao(0));
-        assertThrows(IllegalArgumentException.class,
-                () -> NumerosRomanos.numerosParaConversao(-1));
-        assertThrows(IllegalArgumentException.class,
-                () -> NumerosRomanos.numerosParaConversao(4000));
+                () -> NumerosRomanos.numerosParaConversao(invalido));
     }
 }

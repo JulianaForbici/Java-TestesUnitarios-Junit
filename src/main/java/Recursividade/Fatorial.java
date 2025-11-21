@@ -1,4 +1,4 @@
-package ExercíciosFeitos.Recursividade;
+package Recursividade;
 import java.math.BigInteger;
 
 public class Fatorial {
@@ -11,7 +11,7 @@ public class Fatorial {
         if (numeroFatorial == 0 || numeroFatorial == 1) {
             return BigInteger.ONE;
         }
-        // aqui vai cair na recursividade
+        // aqui vai cair na recursividade:
         // retorna n * fatorial(n-1) como BigInteger
         return BigInteger.valueOf(numeroFatorial).multiply(fatorial(numeroFatorial - 1));
     }
