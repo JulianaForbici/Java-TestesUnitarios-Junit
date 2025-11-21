@@ -1,3 +1,5 @@
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -28,5 +30,17 @@ class OrdenaNumerosTest {
     void shouldReturnNumbersInAscendingOrderWithNegativeValues() {
         String result = OrdenaNumeros.sortFiveNumbers(-5, -1, 0, 10, 3);
         assertEquals("-5 -1 0 3 10", result);
+    }
+    @ParameterizedTest
+    @CsvSource({
+            "10, 9, 8, 7, 6, '6 7 8 9 10'",
+            "100, -100, 0, 50, -50, '-100 -50 0 50 100'",
+            "-2, -1, -1, 0, 0, '-2 -1 -1 0 0'",
+            "42, 42, 7, 7, 42, '7 7 42 42 42'",
+            "2147483647, -2147483648, 0, -1, 1, '-2147483648 -1 0 1 2147483647'"
+    })
+    void sortsFiveNumberswithExpected(int a, int b, int c, int d, int e, String esperado) {
+        String resultado = OrdenaNumeros.sortFiveNumbers(a, b, c, d, e);
+        assertEquals(esperado, resultado);
     }
 }
