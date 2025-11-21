@@ -14,7 +14,7 @@ public class Fibonacci {
         if (numeroDigitado == 1) {
             return BigInteger.ONE;
         }
-        // iterativo! vai guardar só os dois últimos termos (a,b).
+        // recursividade! vai guardar só os dois últimos termos (a, b)
         BigInteger a = BigInteger.ZERO; // F(0)
         BigInteger b = BigInteger.ONE;  // F(1)
         // o laço começa em f = 2 porque os termos F(0) e F(1) já estão definidos

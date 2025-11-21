@@ -15,7 +15,7 @@ class FibonacciTest {
         assertEquals(esperado, resultado);
     }
     @ParameterizedTest
-    @DisplayName("números negativos devem lançar exceção")
+    @DisplayName("testar resultados esperados")
     @CsvSource({
             "2, 1",
             "3, 2",
