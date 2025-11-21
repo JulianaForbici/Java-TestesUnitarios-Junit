@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 public class OrdenaNumeros {
-
     private static int readFiveNumbers(Scanner leTerminal, String texto) {
         while (true) {
             System.out.print(texto);

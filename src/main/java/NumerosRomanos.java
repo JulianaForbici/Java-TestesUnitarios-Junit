@@ -16,7 +16,8 @@ public class NumerosRomanos {
         int restante = numero;
         // passo por todos os valores do maior para o menor
         for (int r = 0; r < valores.length; r++) {
-            // enquanto o número que sobrou ainda for maior ou igual ao valor atual, eu adiciono o símbolo romano correspondente e diminuo o restante
+            // enquanto o número que sobrou ainda for maior ou igual ao valor atual,
+            // eu adiciono o símbolo romano correspondente e diminuo o restante
             while (restante >= valores[r]) {
                 resultado += simbolos[r];
                 restante -= valores[r];
@@ -34,17 +35,16 @@ public class NumerosRomanos {
             // aqui no if eu confiro se o que o usuário digitou é int
             if (!leTerminal.hasNextInt()) {
                 System.out.println("Você deve digitar um número inteiro!");
-                leTerminal.next(); // descarto o que ele digitou, porque não é número
-                continue;  // volto pro começo do while
+                leTerminal.next();
+                continue;
             }
-            // se chegou aqui já sei que é um inteiro
             int numero = leTerminal.nextInt();
             try {
                 // chamo o método que converte o número para romano nessa linha
                 String romano = numerosParaConversao(numero);
                 System.out.println("Número em romano: " + romano);
             } catch (IllegalArgumentException e) {
-                // se o número estiver fora do intervalo 1–3999 (inclui 0), cai aqui
+                // se o número estiver fora do intervalo vair cair aqui
                 System.out.println("Erro! " + e.getMessage());
             }
             System.out.println();
