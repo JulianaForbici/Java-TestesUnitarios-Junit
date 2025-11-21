@@ -21,7 +21,7 @@ class FatorialTest {
             "3, 6",
             "5, 120",
             "20, 2432902008176640000",
-            "21, 51090942171709440000", // acima do long
+            "21, 51090942171709440000",
             "30, 265252859812191058636308480000000"
     })
     void smallFactorials(int numeroDigitado, String bigIntEsperado) {
