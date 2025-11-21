@@ -1,22 +1,26 @@
+import java.math.BigInteger;
+
 public class Fatorial {
-    // método que recebe um int n e devolve n! (fatorial de n)
-    public static long factorial(int n) {
-        // não faz sentido fatorial de número negativo
-        if (n < 0) {
-            throw new IllegalArgumentException("n deve ser maior ou igual a 0");
+    public static BigInteger fatorial(int numeroFatorial) {
+        if (numeroFatorial < 0) {
+            throw new IllegalArgumentException("O número digitado deve ser maior ou igual a 0!");
         }
-        // por definição, 0! = 1
-        if (n == 0) {
-            return 1;
+        // usei if aqui pq usar else if é desnecessário já que o fluxo saiu do metódo por causa do throw
+        if (numeroFatorial == 0 || numeroFatorial == 1) {
+            return BigInteger.ONE;
         }
-        // n! = n * (n - 1)!
-        return n * factorial(n - 1);
+        // aqui vai cair na recursividade:
+        return BigInteger.valueOf(numeroFatorial).multiply(fatorial(numeroFatorial - 1));
     }
     public static void main(String[] args) {
-        // só alguns testes pra compilar
-        System.out.println("0! = " + factorial(0)); // 1
-        System.out.println("1! = " + factorial(1)); // 1
-        System.out.println("3! = " + factorial(3)); // 6
-        System.out.println("5! = " + factorial(5)); // 120
+        // fatorial de 0 e 1 são os casos bases, já que retornam 1 sem recursão
+        System.out.println("0! = " + fatorial(0));
+        System.out.println("1! = " + fatorial(1));
+        System.out.println("2! = " + fatorial(2)); // 2 x 1 = 2
+        System.out.println("3! = " + fatorial(3)); // 3 x 2 = 6
+        System.out.println("4! = " + fatorial(4)); // 4 x 6 = 24
+        System.out.println("5! = " + fatorial(5)); // 5 x 24 = 120
+        System.out.println("20! = " + fatorial(20)); // 20! = produto de 1 até 20 = 2432902008176640000
+        System.out.println("30! = " + fatorial(30));
     }
 }
