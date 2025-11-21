@@ -25,10 +25,10 @@ class FatorialTest {
             "21, 51090942171709440000", // acima do long
             "30, 265252859812191058636308480000000"
     })
-    void smallFactorials(int numeroDigitado, String expectedStr) {
-        BigInteger expected = new BigInteger(expectedStr);
+    void smallFactorials(int numeroDigitado, String bigIntEsperado) {
+        BigInteger esperado = new BigInteger(bigIntEsperado);
         BigInteger resultado = Fatorial.fatorial(numeroDigitado);
-        assertEquals(expected, resultado);
+        assertEquals(esperado, resultado);
     }
     @ParameterizedTest
     @DisplayName("números negativos devem lançar exceção")
