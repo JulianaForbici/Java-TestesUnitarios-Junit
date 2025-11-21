@@ -2,9 +2,9 @@ import java.util.Scanner;
 
 public class OrdenaNumeros {
 
-    private static int readFiveNumbers(Scanner leTerminal, String prompt) {
+    private static int readFiveNumbers(Scanner leTerminal, String texto) {
         while (true) {
-            System.out.print(prompt);
+            System.out.print(texto);
             String row = leTerminal.nextLine();
             try {
                 // tento transformar o que a pessoa digitou num int e dá erro se n for int

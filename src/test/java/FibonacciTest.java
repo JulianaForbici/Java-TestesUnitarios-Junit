@@ -1,33 +1,41 @@
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.CsvSource;
+import java.math.BigInteger;
 import static org.junit.jupiter.api.Assertions.*;
 
 class FibonacciTest {
-    @Test
-    void shouldReturnZeroForNZero() {
-        int result = Fibonacci.fibonacci(0);
-        assertEquals(0, result);
+    @ParameterizedTest
+    @DisplayName("testar casos bases")
+    @ValueSource(ints = {0, 1})
+    void baseCases(int fibonacci) {
+        BigInteger esperado = BigInteger.valueOf(fibonacci);
+        BigInteger resultado = Fibonacci.fibonacci(fibonacci);
+        assertEquals(esperado, resultado);
     }
-    @Test
-    void shouldReturnOneForNOne() {
-        int result = Fibonacci.fibonacci(1);
-        assertEquals(1, result);
+    @ParameterizedTest
+    @DisplayName("números negativos devem lançar exceção")
+    @CsvSource({
+            "2, 1",
+            "3, 2",
+            "4, 3",
+            "5, 5",
+            "10, 55",
+            "20, 6765",
+            "100, 354224848179261915075"
+    })
+        // esperado como string para suportar valores maiores
+    void knownValues(int fibonacci, String valoresMaiores) {
+        BigInteger esperado = new BigInteger(valoresMaiores);
+        BigInteger resultado = Fibonacci.fibonacci(fibonacci);
+        assertEquals(esperado, resultado);
     }
-    @Test
-    void shouldReturnCorrectValueForSmallNumbers() {
-        assertEquals(1, Fibonacci.fibonacci(2)); // 1
-        assertEquals(2, Fibonacci.fibonacci(3)); // 2
-        assertEquals(3, Fibonacci.fibonacci(4)); // 3
-        assertEquals(5, Fibonacci.fibonacci(5)); // 5
-        assertEquals(8, Fibonacci.fibonacci(6)); // 8
-    }
-    @Test
-    void shouldReturnCorrectValueForBiggerNumber() {
-        // sequência: 0,1,1,2,3,5,8,13,21,34,55
-        assertEquals(55, Fibonacci.fibonacci(10));
-    }
-    @Test
-    void shouldThrowExceptionForNegativeNumber() {
+    @ParameterizedTest
+    @DisplayName("números negativos devem lançar exceção")
+    @ValueSource(ints = {-1, -5})
+    void negativeNumbersShouldThrow(int fibonacci) {
         assertThrows(IllegalArgumentException.class,
-                () -> Fibonacci.fibonacci(-1));
+                () -> Fibonacci.fibonacci(fibonacci));
     }
 }

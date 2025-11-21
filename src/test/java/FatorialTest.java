@@ -7,7 +7,6 @@ import java.math.BigInteger;
 import static org.junit.jupiter.api.Assertions.*;
 
 class FatorialTest {
-
     @ParameterizedTest
     @DisplayName("testar casos bases")
     @ValueSource(ints = {0, 1})

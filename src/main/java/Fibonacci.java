@@ -1,26 +1,33 @@
-import java.util.Scanner;
+import java.math.BigInteger;
 
 public class Fibonacci {
-
-    // fiz um método que recebe um int n e devolve o número de fibonacci
-    public static int fibonacci(int n) {
-        // aqui eu não deixo usar número negativo
-        if (n < 0) {
-            throw new IllegalArgumentException("n deve ser maior ou igual a 0");
+    // fiz um método que recebe um int e devolve o número de fibonacci
+    public static BigInteger fibonacci(int numeroDigitado) {
+        if (numeroDigitado < 0) {
+            throw new IllegalArgumentException("O número digitado deve ser maior ou igual a 0!");
         }
-        // se n for 0, por definição o resultado é 0
-        if (n == 0) {
-            return 0;
+        // se for 0, por definição o resultado é 0
+        if (numeroDigitado == 0) {
+            return BigInteger.ZERO;
         }
-        // se n for 1, por definição o resultado é 1
-        if (n == 1) {
-            return 1;
+        // se for 1, por definição o resultado é 1
+        if (numeroDigitado == 1) {
+            return BigInteger.ONE;
         }
-        // usando a fórmula F(n) = F(n - 1) + F(n - 2)
-        return fibonacci(n - 1) + fibonacci(n - 2);
+        // iterativo! vai guardar só os dois últimos termos (a,b).
+        BigInteger a = BigInteger.ZERO; // F(0)
+        BigInteger b = BigInteger.ONE;  // F(1)
+        // o laço começa em f = 2 porque os termos F(0) e F(1) já estão definidos
+        for (int f = 2; f <= numeroDigitado; f++) {
+            BigInteger c = a.add(b); // F(f) = F(f - 1) + F(f - 2)
+            a = b;
+            b = c;
+        }
+        // em cada iteração o c = a + b vai calcular o próximo termo F(f)
+        // e o b vira o novo f(f) pro novo loop
+        return b; // F(n)
     }
     public static void main(String[] args) {
-        // só uns testes rápidos pra compilar
         System.out.println(fibonacci(0)); // 0
         System.out.println(fibonacci(1)); // 1
         System.out.println(fibonacci(2)); // 1
@@ -28,5 +35,6 @@ public class Fibonacci {
         System.out.println(fibonacci(4)); // 3
         System.out.println(fibonacci(5)); // 5
         System.out.println(fibonacci(6)); // 8
+        System.out.println(fibonacci(100)); // 354224848179261915075
     }
 }
