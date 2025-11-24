@@ -1,11 +1,14 @@
+package ExerciciosLogica;
+
 import java.util.Scanner;
 
 public class OrdenaNumeros {
-    public static int lerNumeroInt(Scanner sc, String textoTerminal) {
+    public static int lerNumeroInt(Scanner leTerminal, String mensagem) {
         while (true) {
-            System.out.print(textoTerminal);
-            String line = sc.nextLine();
+            System.out.print(mensagem);
+            String line = leTerminal.nextLine();
             try {
+                // tenta converter a string em um int
                 return Integer.parseInt(line.trim());
             } catch (NumberFormatException ex) {
                 System.out.println("Digite um número inteiro!");
@@ -41,14 +44,14 @@ public class OrdenaNumeros {
         return a + " " + b + " " + c + " " + d + " " + e;
     }
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int a = lerNumeroInt(sc, "**-----Digite o primeiro valor-----**: ");
-        int b = lerNumeroInt(sc, "**-----Digite o segundo valor-----**: ");
-        int c = lerNumeroInt(sc, "**-----Digite o terceiro valor-----**: ");
-        int d = lerNumeroInt(sc, "**-----Digite o quarto valor-----**: ");
-        int e = lerNumeroInt(sc, "**-----Digite o quinto valor-----**: ");
+        Scanner leTerminal = new Scanner(System.in);
+        int a = lerNumeroInt(leTerminal, "**-----Digite o primeiro valor-----**: ");
+        int b = lerNumeroInt(leTerminal, "**-----Digite o segundo valor-----**: ");
+        int c = lerNumeroInt(leTerminal, "**-----Digite o terceiro valor-----**: ");
+        int d = lerNumeroInt(leTerminal, "**-----Digite o quarto valor-----**: ");
+        int e = lerNumeroInt(leTerminal, "**-----Digite o quinto valor-----**: ");
         String ordenados = ordenarNumeros(a, b, c, d, e);
         System.out.println("Cinco valores ordenados (menor para o maior): " + ordenados);
-        sc.close();
+        leTerminal.close();
     }
 }

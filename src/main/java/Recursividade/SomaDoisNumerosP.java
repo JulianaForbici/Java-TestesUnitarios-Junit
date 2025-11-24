@@ -2,9 +2,8 @@ package Recursividade;
 import java.util.Scanner;
 
 public class SomaDoisNumerosP {
-    // método recursivo que soma os números pares
     public static int somaPares(int numero) {
-        // caso base || quando o numero for 1 ou menor, não tem mais par pra somar
+        // caso base || quando o numero for 1 ou menor, não tem par pra somar
         if (numero <= 1) {
             return 0;
         }
@@ -16,22 +15,22 @@ public class SomaDoisNumerosP {
         return numero + somaPares(numero - 2);
     }
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner leTerminal = new Scanner(System.in);
         System.out.print("Digite um número inteiro positivo: ");
-        if (!sc.hasNextInt()) {
+        if (!leTerminal.hasNextInt()) {
             System.out.println("Você deve digitar um número inteiro!");
-            sc.close();
+            leTerminal.close();
             return;
         }
-        int numero = sc.nextInt();
+        int numero = leTerminal.nextInt();
         // aqui eu garanto que a entrada do usuário é positiva
         if (numero < 1) {
             System.out.println("O número deve ser maior ou igual a 1!");
-            sc.close();
+            leTerminal.close();
             return;
         }
         int resultado = somaPares(numero);
         System.out.println("Soma dos números pares de 1 até " + numero + " é " + resultado);
-        sc.close();
+        leTerminal.close();
     }
 }

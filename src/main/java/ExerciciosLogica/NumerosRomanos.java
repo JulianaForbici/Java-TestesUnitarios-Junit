@@ -1,17 +1,25 @@
+package ExerciciosLogica;
+
 import java.util.Scanner;
 
 public class NumerosRomanos {
+
     // fiz um método que recebe um número int e devolve ele em número romano (mas como *STRING*)
     public static String numerosParaConversao(int numero) {
         if (numero < 1 || numero > 3999) {
             throw new IllegalArgumentException("O número digitado deve ser entre 1 e 3999!");
         }
+
         int[] valores   = {1000, 900, 500, 400, 100,  90,  50,  40,  10,   9,   5,   4,  1};
         String[] simbolos = {"M", "CM","D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV","I"};
-        // aqui vou guardar o resultado final em romano
+
+        // cada passo ele subtrai do número o maior valor possível e
+        // concatena o símbolo equivalente até que o restante chegue a zero formando a string final em romano
         String resultado = "";
+
         // esse restante vai diminuindo até chegar em zero
         int restante = numero;
+
         // passo por todos os valores do maior para o menor
         for (int r = 0; r < valores.length; r++) {
             // enquanto o número que sobrou ainda for maior ou igual ao valor atual,
@@ -21,11 +29,13 @@ public class NumerosRomanos {
                 restante -= valores[r];
             }
         }
+
         // quando o restante chegar em 0, o resultado fica pronto
         return resultado;
     }
     public static void main(String[] args) {
         Scanner leTerminal = new Scanner(System.in);
+
         // loop principal do programa
         while (true) {
             System.out.println("------------------------------------------");
@@ -33,6 +43,7 @@ public class NumerosRomanos {
             // aqui no if eu confiro se o que o usuário digitou é um int
             if (!leTerminal.hasNextInt()) {
                 System.out.println("Você deve digitar um número inteiro!");
+                // vai descartar o token inválido pra não ficar repetidamente no mesmo input do terminal
                 leTerminal.next();
                 continue;
             }
