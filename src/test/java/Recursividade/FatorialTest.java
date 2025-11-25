@@ -1,36 +1,40 @@
 package Recursividade;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.api.Test;
+import java.math.BigInteger;
 import static org.junit.jupiter.api.Assertions.*;
 
 class FatorialTest {
-    @Test
-    void shouldReturnOneForZero() {
-        long result = Fatorial.factorial(0);
-        assertEquals(1L, result);
+    @ParameterizedTest
+    @DisplayName("testar casos bases")
+    @ValueSource(ints = {0, 1})
+    void shouldReturnOneForZeroAndOne(int numeroDigitado) {
+        BigInteger resultado = Fatorial.fatorial(numeroDigitado);
+        assertEquals(BigInteger.ONE, resultado, numeroDigitado + "! deve ser 1");
     }
-    @Test
-    void shouldReturnOneForOne() {
-        long result = Fatorial.factorial(1);
-        assertEquals(1L, result);
+    @ParameterizedTest
+    @DisplayName("testar resultados fatoriais")
+    @CsvSource({
+            "2, 2",
+            "3, 6",
+            "5, 120",
+            "20, 2432902008176640000",
+            "21, 51090942171709440000",
+            "30, 265252859812191058636308480000000"
+    })
+    void smallFactorials(int numeroDigitado, String bigIntEsperado) {
+        BigInteger esperado = new BigInteger(bigIntEsperado);
+        BigInteger resultado = Fatorial.fatorial(numeroDigitado);
+        assertEquals(esperado, resultado);
     }
-    @Test
-    void shouldReturnCorrectFactorialForThree() {
-        long result = Fatorial.factorial(3); // 3 * 2 * 1
-        assertEquals(6L, result);
-    }
-    @Test
-    void shouldReturnCorrectFactorialForFive() {
-        long result = Fatorial.factorial(5); // 5 * 4 * 3 * 2 * 1
-        assertEquals(120L, result);
-    }
-    @Test
-    void shouldReturnCorrectFactorialForTen() {
-        long result = Fatorial.factorial(10); // 10! = 3.628.800
-        assertEquals(3_628_800L, result);
-    }
-    @Test
-    void shouldThrowExceptionForNegativeNumber() {
+    @ParameterizedTest
+    @DisplayName("números negativos devem lançar exceção")
+    @ValueSource(ints = {-1, -2})
+    void negativeShouldThrowIllegalArgumentException(int fatorial) {
         assertThrows(IllegalArgumentException.class,
-                () -> Fatorial.factorial(-1));
+                () -> Fatorial.fatorial(fatorial));
     }
 }
