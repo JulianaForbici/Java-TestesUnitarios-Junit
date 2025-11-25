@@ -1,9 +1,9 @@
-package ExercíciosPoo;
+package ExercíciosPoo.Carro;
 
 public class Main {
     public static void main(String[] args) {
-        Pessoa p = new Pessoa("Juliana Ju", "123.456.789-00");
-        Carro c = new Carro("Volkswagen", "Passat", "Amarelo queimado", 1974 , 200.0, p);
+        Pessoa p = new Pessoa("Juliana", "12345643211");
+        Carro c = new Carro("Volkswagen", "Passat", "Amarelo queimado", 2025 , 200.0, p);
 
         System.out.println(c);
         System.out.println("Proprietário do carro: " + c.getProprietario());

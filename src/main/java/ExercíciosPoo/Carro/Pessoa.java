@@ -1,4 +1,4 @@
-package ExercíciosPoo;
+package ExercíciosPoo.Carro;
 
 public class Pessoa {
 

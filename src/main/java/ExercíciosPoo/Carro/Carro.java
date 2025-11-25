@@ -1,4 +1,4 @@
-package ExercíciosPoo;
+package ExercíciosPoo.Carro;
 
 import java.time.Year;
 
@@ -25,7 +25,6 @@ public class Carro {
     }
 
     public void setProprietario(Pessoa proprietario) {
-
         this.proprietario = proprietario;
     }
 
