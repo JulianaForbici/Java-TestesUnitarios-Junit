@@ -4,13 +4,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-/*
- testes unitários da classe ItemPedido
- cobre criação, snapshot do preço, setters e toString
-*/
 class ItemPedidoTest {
 
     // construtor deve capturar snapshot do preco e calcular subtotal corretamente
