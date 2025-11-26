@@ -47,7 +47,7 @@ public class Funcionario {
         this.salario = salario;
     }
 
-    // bonificação padrão: 5% do salário (retorna float)
+    // bonificação padrão, 5% do salário (retorna float)
     public float getBonificacao() {
         return this.salario * 0.05f;
     }

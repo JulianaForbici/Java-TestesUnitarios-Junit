@@ -9,7 +9,7 @@ public class Pedido {
     private double valorTotal = 0.0;
 
     public Pedido() {
-        // construtor simples; nenhum setter necessario aqui
+        // construtor simples, nenhum setter necessario aqui
     }
 
     // adiciona item criando ItemPedido (construtor chama os setters)

@@ -20,9 +20,9 @@ class ContaBancariaTest {
             "15.0, -10.0, false, 15.0"
     })
     void depositShouldReturnNumbersExpected(double saldoInicial, double valorDeposito, boolean valorEsperado, double saldoEsperado) {
-        ContaBancaria c = new ContaBancaria(1, 1, saldoInicial, TipoConta.CONTA_CORRENTE);
-        assertEquals(valorEsperado, c.depositar(valorDeposito));
-        assertEquals(saldoEsperado, c.getSaldo(), 0.0001);
+        ContaBancaria contabancaria1 = new ContaBancaria(1, 1, saldoInicial, TipoConta.CONTA_CORRENTE);
+        assertEquals(valorEsperado, contabancaria1.depositar(valorDeposito));
+        assertEquals(saldoEsperado, contabancaria1.getSaldo(), 0.0001);
     }
 
     @ParameterizedTest
@@ -35,23 +35,23 @@ class ContaBancariaTest {
             "POUPANCA, 10.0, 20.0, false, 10.0"         // insuficiente
     })
     void withDrawBankShouldReturnNumbersExpected(TipoConta tipoConta, double saldoInicial, double valorSaque, boolean valorEsperado, double saldoEsperado) {
-        ContaBancaria s = new ContaBancaria(0, 1, saldoInicial, tipoConta);
-        assertEquals(valorEsperado, s.sacar(valorSaque));
-        assertEquals(saldoEsperado, s.getSaldo(), 0.0001);
+        ContaBancaria contabancaria1 = new ContaBancaria(0, 1, saldoInicial, tipoConta);
+        assertEquals(valorEsperado, contabancaria1.sacar(valorSaque));
+        assertEquals(saldoEsperado, contabancaria1.getSaldo(), 0.0001);
     }
 
     @Test
     @DisplayName("getters básicos retornam valores esperados")
     void basicGettersTest() {
-        ContaBancaria c = new ContaBancaria(5, 10, 123.45, TipoConta.CONTA_CORRENTE);
-        assertEquals(5, c.getNumero());
-        assertEquals(10, c.getAgencia());
-        assertEquals(123.45, c.getSaldo(), 0.0001);
-        assertEquals(TipoConta.CONTA_CORRENTE, c.getTipoConta());
+        ContaBancaria contabancaria1 = new ContaBancaria(5, 10, 123.45, TipoConta.CONTA_CORRENTE);
+        assertEquals(5, contabancaria1.getNumero());
+        assertEquals(10, contabancaria1.getAgencia());
+        assertEquals(123.45, contabancaria1.getSaldo(), 0.0001);
+        assertEquals(TipoConta.CONTA_CORRENTE, contabancaria1.getTipoConta());
     }
 
     @Test
-    @DisplayName("Tipo de conta com tipo nulo deve lançar exceção")
+    @DisplayName("Tipo de conta vqzia deve lançar exceção")
     void constructorWithNullTypeShouldThrow() {
         IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
                 () -> new ContaBancaria(1, 1, 0.0, null));
@@ -62,69 +62,69 @@ class ContaBancariaTest {
     @DisplayName("Saldo com valor negativo deve lançar exceção")
     @ValueSource(doubles = {-0.01, -1.0})
     void negativeBalanceShouldThrow(double negativeValue) {
-        ContaBancaria c = new ContaBancaria(1, 1, 10.0, TipoConta.POUPANCA);
-        ContaBancaria d = new ContaBancaria(1, 1, 10.0, TipoConta.CONTA_CORRENTE);
+        ContaBancaria contabancaria1 = new ContaBancaria(1, 1, 10.0, TipoConta.POUPANCA);
+        ContaBancaria contabancaria2 = new ContaBancaria(1, 1, 10.0, TipoConta.CONTA_CORRENTE);
         assertThrows(IllegalArgumentException.class,
-                () -> c.setSaldo(negativeValue));
+                () -> contabancaria1.setSaldo(negativeValue));
         assertThrows(IllegalArgumentException.class,
-                () -> d.setSaldo(negativeValue));
+                () -> contabancaria2.setSaldo(negativeValue));
     }
 
     @ParameterizedTest
     @ValueSource(ints = {-1, -100})
-    @DisplayName("Valores inválidos devem lançar IllegalArgumentException")
+    @DisplayName("Valores inválidos devem lançar exceção")
     void setNumberInvalidShouldThrow(int numeroInvalido) {
-        ContaBancaria c = new ContaBancaria(1, 1, 10.0, TipoConta.POUPANCA);
+        ContaBancaria contabancaria1 = new ContaBancaria(1, 1, 10.0, TipoConta.POUPANCA);
         assertThrows(IllegalArgumentException.class,
-                () -> c.setNumero(numeroInvalido));
+                () -> contabancaria1.setNumero(numeroInvalido));
     }
 
     @Test
     @DisplayName("Valores válidos atualizam o número da conta")
     void setNumberValidUpdates() {
-        ContaBancaria c = new ContaBancaria(1, 1, 10.0, TipoConta.POUPANCA);
-        c.setNumero(0);
-        assertEquals(0, c.getNumero());
-        c.setNumero(42);
-        assertEquals(42, c.getNumero());
+        ContaBancaria contabancaria1 = new ContaBancaria(1, 1, 10.0, TipoConta.POUPANCA);
+        contabancaria1.setNumero(0);
+        assertEquals(0, contabancaria1.getNumero());
+        contabancaria1.setNumero(42);
+        assertEquals(42, contabancaria1.getNumero());
     }
 
     @ParameterizedTest
     @ValueSource(ints = {-1, -50})
     @DisplayName("Valores inválidos devem lançar exceção")
     void setAgencyInvalid_ShouldThrow(int agenciaInvalida) {
-        ContaBancaria c = new ContaBancaria(1, 1, 10.0, TipoConta.CONTA_CORRENTE);
+        ContaBancaria contabancaria1 = new ContaBancaria(1, 1, 10.0, TipoConta.CONTA_CORRENTE);
         assertThrows(IllegalArgumentException.class,
-                () -> c.setAgencia(agenciaInvalida));
+                () -> contabancaria1.setAgencia(agenciaInvalida));
     }
 
     @Test
     @DisplayName("Valores válidos atualizam a agência")
     void setAgencyValidUpdates() {
-        ContaBancaria c = new ContaBancaria(1, 1, 10.0, TipoConta.CONTA_CORRENTE);
-        c.setAgencia(0);
-        assertEquals(0, c.getAgencia());
-        c.setAgencia(99);
-        assertEquals(99, c.getAgencia());
+        ContaBancaria contabancaria1 = new ContaBancaria(1, 1, 10.0, TipoConta.CONTA_CORRENTE);
+        contabancaria1.setAgencia(0);
+        assertEquals(0, contabancaria1.getAgencia());
+        contabancaria1.setAgencia(99);
+        assertEquals(99, contabancaria1.getAgencia());
     }
 
     @ParameterizedTest
     @ValueSource(doubles = {0.0, -1.0, -0.01})
     @DisplayName("Sacar com valores inválidos retorna false e não altera o saldo")
     void withdrawInvalidValues_ReturnsFalse(double valorInvalido) {
-        ContaBancaria c = new ContaBancaria(0, 1, 100.0, TipoConta.CONTA_CORRENTE);
-        double saldoAntes = c.getSaldo();
-        assertFalse(c.sacar(valorInvalido));
-        assertEquals(saldoAntes, c.getSaldo(), 1e-9);
+        ContaBancaria contabancaria1 = new ContaBancaria(0, 1, 100.0, TipoConta.CONTA_CORRENTE);
+        double saldoAntes = contabancaria1.getSaldo();
+        assertFalse(contabancaria1.sacar(valorInvalido));
+        assertEquals(saldoAntes, contabancaria1.getSaldo(), 1e-9);
     }
 
     @Test
     @DisplayName("toString retorna formato completo esperado")
     void toStringExactMatch() {
-        ContaBancaria c = new ContaBancaria(1, 2, 100.0, TipoConta.CONTA_CORRENTE);
+        ContaBancaria contabancaria1 = new ContaBancaria(1, 2, 100.0, TipoConta.CONTA_CORRENTE);
         String esperado = String.format(
                 "Conta: %d | Agência: %d | Tipo: %s | Saldo: R$%.2f",
-                c.getNumero(), c.getAgencia(), c.getTipoConta(), c.getSaldo());
-        assertEquals(esperado, c.toString());
+                contabancaria1.getNumero(), contabancaria1.getAgencia(), contabancaria1.getTipoConta(), contabancaria1.getSaldo());
+        assertEquals(esperado, contabancaria1.toString());
     }
 }

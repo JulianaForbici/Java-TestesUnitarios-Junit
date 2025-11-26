@@ -35,9 +35,10 @@ public class ContaBancaria {
         } else {
             taxa = 0.0;
         }
-
+      // soma o valor solicitado com a taxa pra obter o custo total que será debitado do saldo
         double valorTotal = valor + taxa;
 
+     // só permite o saque se houver saldo suficiente para cobrir valor + taxa
         if (saldo >= valorTotal) {
             saldo -= valorTotal;
             return true;
@@ -89,7 +90,7 @@ public class ContaBancaria {
         }
         this.saldo = saldo;
     }
-
+   // %d = inteiro; %s = texto/objeto; %.2f = número com 2 casas decimais
     @Override
     public String toString() {
         return String.format("Conta: %d | Agência: %d | Tipo: %s | Saldo: R$%.2f",
