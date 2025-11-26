@@ -36,10 +36,10 @@ class CarroTest {
     @Test
     @DisplayName("GetProprietario retorna a mesma instância passada")
     void testGetProprietarioIdentity() {
-        Pessoa p = new Pessoa("Laura", "000.000.000-00");
-        Carro carro = new Carro("Volvo", "M30", "Prateado", 2018, 30000.0, p);
+        Pessoa pessoa = new Pessoa("Laura", "000.000.000-00");
+        Carro carro = new Carro("Volvo", "M30", "Prateado", 2018, 30000.0, pessoa);
         // assertSame valida que é a mesma referência não só equals
-        assertSame(p, carro.getProprietario());
+        assertSame(pessoa, carro.getProprietario());
     }
 
     // testa o formato da representacao textual do carro toString

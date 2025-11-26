@@ -11,12 +11,12 @@ class PedidoTest {
     @Test
     @DisplayName("adicionarItem acumula subtotais e obterValorPedido retorna total correto")
     void testAdicionarItemAndObterValorPedido() {
-        Produto p1 = new Produto(1, 10.0, "papel");
-        Produto p2 = new Produto(2, 25.5, "apontador");
+        Produto produto = new Produto(1, 10.0, "papel");
+        Produto produto2 = new Produto(2, 25.5, "apontador");
 
         Pedido pedido = new Pedido();
-        pedido.adicionarItem(p1, 3); // 30.0
-        pedido.adicionarItem(p2, 2); // 51.0
+        pedido.adicionarItem(produto, 3); // 30.0
+        pedido.adicionarItem(produto2, 2); // 51.0
 
         assertEquals(81.0, pedido.obterValorPedido(), 1e-6);
 
@@ -37,40 +37,42 @@ class PedidoTest {
     @Test
     @DisplayName("adicionarItem com quantidade invalida lancara IllegalArgumentException")
     void testAdicionarItemInvalidQtdeThrows() {
-        Produto p = new Produto(1, 10.0, "x");
+        Produto produto = new Produto(1, 10.0, "x");
         Pedido pedido = new Pedido();
-        assertThrows(IllegalArgumentException.class, () -> pedido.adicionarItem(p, 0));
-        assertThrows(IllegalArgumentException.class, () -> pedido.adicionarItem(p, -2));
+        assertThrows(IllegalArgumentException.class,
+                () -> pedido.adicionarItem(produto, 0));
+        assertThrows(IllegalArgumentException.class,
+                () -> pedido.adicionarItem(produto, -2));
     }
 
     // getItens deve retornar lista imutável
     @Test
     @DisplayName("getItens retorna lista imutavel")
     void testGetItensUnmodifiable() {
-        Produto p = new Produto(1, 1.0, "x");
+        Produto produto = new Produto(1, 1.0, "x");
         Pedido pedido = new Pedido();
-        pedido.adicionarItem(p, 1);
+        pedido.adicionarItem(produto, 1);
         List<ItemPedido> itens = pedido.getItens();
-        assertThrows(UnsupportedOperationException.class, () -> itens.add(new ItemPedido(p, 1)));
+        assertThrows(UnsupportedOperationException.class, () -> itens.add(new ItemPedido(produto, 1)));
     }
 
     // snapshot do preco é preservado após alterar preco do produto; novos itens usam novo preco
     @Test
     @DisplayName("snapshot preservado apos alterar preco do produto; novos itens usam novo preco")
     void testSnapshotPreservedAfterProductPriceChange() {
-        Produto p = new Produto(1, 10.0, "papel");
+        Produto produto = new Produto(1, 10.0, "papel");
         Pedido pedido = new Pedido();
-        pedido.adicionarItem(p, 2); // subtotal 20
+        pedido.adicionarItem(produto, 2); // subtotal 20
         assertEquals(20.0, pedido.obterValorPedido(), 1e-6);
 
         // altera preco do produto
-        p.setValor(12.0);
+        produto.setValor(12.0);
 
         // total do pedido permanece o mesmo
         assertEquals(20.0, pedido.obterValorPedido(), 1e-6);
 
         // adicionar novo item usa novo preco
-        pedido.adicionarItem(p, 1); // +12
+        pedido.adicionarItem(produto, 1); // +12
         assertEquals(32.0, pedido.obterValorPedido(), 1e-6);
     }
 
@@ -78,9 +80,9 @@ class PedidoTest {
     @Test
     @DisplayName("toString contem TOTAL em maiusculas e mostra valor formatado")
     void testToStringContainsTotal() {
-        Produto p = new Produto(1, 5.0, "x");
+        Produto produto = new Produto(1, 5.0, "x");
         Pedido pedido = new Pedido();
-        pedido.adicionarItem(p, 2); // 10.0
+        pedido.adicionarItem(produto, 2); // 10.0
         String s = pedido.toString();
 
         String totalFormatado = String.format("%.2f", pedido.obterValorPedido());

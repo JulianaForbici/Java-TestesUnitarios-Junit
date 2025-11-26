@@ -14,9 +14,9 @@ class PessoaTest {
             "Matheus T, 222.222.222-22"
     })
     void testGetters(String nome, String cpf) {
-        Pessoa p = new Pessoa(nome, cpf);
-        assertEquals(nome, p.getNome());
-        assertEquals(cpf, p.getCpf());
+        Pessoa pessoa = new Pessoa(nome, cpf);
+        assertEquals(nome, pessoa.getNome());
+        assertEquals(cpf, pessoa.getCpf());
     }
     @ParameterizedTest
     @DisplayName("toString retorna formato 'nome (cpf)'")
@@ -26,7 +26,7 @@ class PessoaTest {
             "João, 123.456.789-00"
     })
     void testToString(String nome, String cpf) {
-        Pessoa p = new Pessoa(nome, cpf);
-        assertEquals(nome + " (" + cpf + ")", p.toString());
+        Pessoa pessoa = new Pessoa(nome, cpf);
+        assertEquals(nome + " (" + cpf + ")", pessoa.toString());
     }
 }

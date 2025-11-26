@@ -12,10 +12,10 @@ class ItemPedidoTest {
     @Test
     @DisplayName("construtor captura snapshot do preco e calcula subtotal corretamente")
     void testConstructorCapturesSnapshotAndSubtotal() {
-        Produto p = new Produto(1, 15.0, "caneta");
-        ItemPedido item = new ItemPedido(p, 3);
+        Produto produto = new Produto(1, 15.0, "caneta");
+        ItemPedido item = new ItemPedido(produto, 3);
 
-        assertSame(p, item.getProduto());
+        assertSame(produto, item.getProduto());
         assertEquals(3, item.getQtde());
         assertEquals(15.0, item.getValorProduto(), 1e-6);
         assertEquals(45.0, item.obterValorItemPedido(), 1e-6);
@@ -33,24 +33,25 @@ class ItemPedidoTest {
     @DisplayName("construtor com quantidade invalida lancara IllegalArgumentException")
     @ValueSource(ints = {0, -1, -5})
     void testConstructorInvalidQtdeThrows(int invalidQtde) {
-        Produto p = new Produto(1, 10.0, "x");
-        assertThrows(IllegalArgumentException.class, () -> new ItemPedido(p, invalidQtde));
+        Produto produto = new Produto(1, 10.0, "x");
+        assertThrows(IllegalArgumentException.class,
+                () -> new ItemPedido(produto, invalidQtde));
     }
 
     // setProduto deve atualizar o snapshot do preco e o subtotal refletir a mudança
     @Test
     @DisplayName("setProduto atualiza snapshot do preco e alterar subtotal")
     void testSetProdutoUpdatesSnapshot() {
-        Produto p1 = new Produto(1, 10.0, "p1");
-        Produto p2 = new Produto(2, 20.0, "p2");
+        Produto produto1 = new Produto(1, 10.0, "p1");
+        Produto produto2 = new Produto(2, 20.0, "p2");
 
-        ItemPedido item = new ItemPedido(p1, 2);
+        ItemPedido item = new ItemPedido(produto1, 2);
         assertEquals(10.0, item.getValorProduto(), 1e-6);
         assertEquals(20.0, item.obterValorItemPedido(), 1e-6); // 2 * 10
 
         // troca o produto e verifica que valorProduto foi atualizado para o novo preco
-        item.setProduto(p2);
-        assertSame(p2, item.getProduto());
+        item.setProduto(produto2);
+        assertSame(produto2, item.getProduto());
         assertEquals(20.0, item.getValorProduto(), 1e-6);
         assertEquals(40.0, item.obterValorItemPedido(), 1e-6); // 2 * 20
     }
@@ -59,18 +60,20 @@ class ItemPedidoTest {
     @Test
     @DisplayName("setQtde com valor invalido lancara IllegalArgumentException")
     void testSetQtdeInvalidThrows() {
-        Produto p = new Produto(1, 5.0, "x");
-        ItemPedido item = new ItemPedido(p, 1);
-        assertThrows(IllegalArgumentException.class, () -> item.setQtde(0));
-        assertThrows(IllegalArgumentException.class, () -> item.setQtde(-3));
+        Produto produto = new Produto(1, 5.0, "x");
+        ItemPedido item = new ItemPedido(produto, 1);
+        assertThrows(IllegalArgumentException.class,
+                () -> item.setQtde(0));
+        assertThrows(IllegalArgumentException.class,
+                () -> item.setQtde(-3));
     }
 
     // toString deve conter descricao, qtde e subtotal formatado (respeitando locale)
     @Test
     @DisplayName("toString contem descricao, qtde e subtotal formatado")
     void testToStringContainsInfo() {
-        Produto p = new Produto(1, 7.5, "Lapis");
-        ItemPedido item = new ItemPedido(p, 4);
+        Produto produto = new Produto(1, 7.5, "Lapis");
+        ItemPedido item = new ItemPedido(produto, 4);
         String s = item.toString();
 
         String subtotalFormatado = String.format("%.2f", item.obterValorItemPedido());

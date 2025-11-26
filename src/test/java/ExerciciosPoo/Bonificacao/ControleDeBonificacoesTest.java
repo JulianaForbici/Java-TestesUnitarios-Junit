@@ -11,13 +11,13 @@ class ControleDeBonificacoesTest {
     void testRegisterAndTotalBonificacoes() {
         ControleDeBonificacoes controle = new ControleDeBonificacoes();
 
-        Funcionario f1 = new Funcionario("Juliana", "111.111.111-11", 3000.0f); // 5% -> 150.0
-        Gerente g1 = new Gerente("Lara", "222.222.222-22", 8000.0f, "pwd", 2);  // 10% -> 800.0
+        Funcionario funcionario = new Funcionario("Juliana", "111.111.111-11", 3000.0f); // 5% -> 150.0
+        Gerente gerente = new Gerente("Lara", "222.222.222-22", 8000.0f, "pwd", 2);  // 10% -> 800.0
 
-        controle.registrar(f1);
-        controle.registrar(g1);
+        controle.registrar(funcionario);
+        controle.registrar(gerente);
 
-        double expected = (double) f1.getBonificacao() + (double) g1.getBonificacao();
+        double expected = (double) funcionario.getBonificacao() + (double) gerente.getBonificacao();
         assertEquals(expected, controle.getTotalBonificacoes(), 1e-6);
     }
 
@@ -26,7 +26,8 @@ class ControleDeBonificacoesTest {
     @DisplayName("registrar nulo lancara excecao")
     void testRegisterNullThrows() {
         ControleDeBonificacoes controle = new ControleDeBonificacoes();
-        assertThrows(IllegalArgumentException.class, () -> controle.registrar(null));
+        assertThrows(IllegalArgumentException.class,
+                () -> controle.registrar(null));
     }
 
     // testa acumulacao em multiplas chamadas para garantir soma correta
