@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PessoaTest {
     @ParameterizedTest
-    @DisplayName("getters retornam os valores esperados")
+    @DisplayName("Getters retornam os valores esperados")
     @CsvSource({
             "Juliana F, 111.111.111-11",
             "Lara E, 000.000.000-00",
