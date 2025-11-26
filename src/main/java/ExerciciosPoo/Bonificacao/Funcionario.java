@@ -28,21 +28,21 @@ public class Funcionario {
     // setters com validação
     public void setNome(String nome) {
         if (nome == null || nome.trim().isEmpty()) {
-            throw new IllegalArgumentException("Nome não pode ser nulo ou vazio");
+            throw new IllegalArgumentException("Nome não pode ser nulo ou vazio!");
         }
         this.nome = nome;
     }
 
     public void setCpf(String cpf) {
         if (cpf == null || cpf.trim().isEmpty()) {
-            throw new IllegalArgumentException("CPF não pode ser nulo ou vazio");
+            throw new IllegalArgumentException("CPF não pode ser nulo ou vazio!");
         }
         this.cpf = cpf;
     }
 
     public void setSalario(float salario) {
         if (salario < 0f) {
-            throw new IllegalArgumentException("Salário não pode ser negativo");
+            throw new IllegalArgumentException("Salário não pode ser negativo!");
         }
         this.salario = salario;
     }
