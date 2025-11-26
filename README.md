@@ -1,42 +1,70 @@
-# Java - Testes Unitários com JUnit
+# Java - Testes Unitários (JUnit)
 
-Repositório com exemplos e exercícios práticos focados em testes unitários em Java usando JUnit (recomendado JUnit 5). O objetivo é exercitar boas práticas de testes, cobertura e uso de recursos como testes parametrizados, lifecycle e validação de casos de borda.
+Repositório para guardar os exercícios do curso de Testes Unitários em Java (JUnit). Aqui você encontrará exemplos, exercícios resolvidos e casos de testes que acompanham o aprendizado prático do curso.
 
-## Conteúdo do repositório
-- src/main/java — código das implementações dos exercícios.
-- src/test/java — testes unitários (JUnit), incluindo testes parametrizados e casos de borda.
-- README.md — este arquivo.
+## Objetivo
+Organizar e versionar os exercícios do curso de forma clara, para consulta posterior e para servir como material de apoio prático ao estudo de testes unitários com JUnit.
 
-## Exercícios propostos
+## Estrutura sugerida do repositório
+- src/main/java/… - código fonte (quando houver exercícios com implementação)
+- src/test/java/… - classes de teste JUnit
+- README.md - documentação do repositório (este arquivo)
+- docs/ - anotações, cheatsheets, prints e materiais auxiliares (opcional)
+- exercises/ - pastas por aula/exercício com enunciado e solução (opcional)
 
-### 01 - Ordenação de 5 números inteiros
-- Implementar algoritmo que recebe 5 números inteiros e retorna os 5 números ordenados (ordem crescente).
-- Restrição importante: **não usar vetor, lista ou qualquer classe/utilitário que faça ordenação automaticamente**. A ideia é implementar a lógica manualmente (ex.: comparações e trocas entre variáveis).
-- Validações e testes a cobrir:
-  - Casos já ordenados, inversamente ordenados, ordenação parcial.
-  - Repetição de valores (valores iguais).
-  - Valores extremos: Integer.MIN_VALUE e Integer.MAX_VALUE.
-  - Entradas inválidas (se houver contrato que impeça certos valores) — trate com exceção documentada.
+Exemplo:
+- exercises/aula-01-nome-da-aula/
+  - README.md (enunciado)
+  - src/main/java/...
+  - src/test/java/...
 
-### 02 - Conversor para Algarismos Romanos
-- Implementar conversor que transforma um inteiro (1..3999) em sua representação em números romanos.
-- Regras: siga o sistema usual de numerais romanos (I, V, X, L, C, D, M) e as regras de subtração padrão.
-- Validação: se o número for menor que 1 ou maior que 3999, lançar uma exceção (por exemplo, IllegalArgumentException) com mensagem clara.
-- Testes obrigatórios:
-  - Casos básicos: 1 -> I, 4 -> IV, 9 -> IX, 40 -> XL, 90 -> XC, 400 -> CD, 900 -> CM, 1000 -> M.
-  - Exemplos compostos (1984, 3999, etc.).
-  - Valores limites: 1, 3999.
-  - Valores inválidos: 0, -1, 4000 -> devem lançar exceção.
-  - Testes parametrizados cobrindo uma tabela de entradas/saídas conhecidas.
+## Pré-requisitos
+- Java JDK 11+ (ou versão usada no curso)
+- Maven ou Gradle (dependendo do setup do exercício)
+- IDE (IntelliJ, Eclipse, VS Code) recomendada para rodar e depurar testes
 
 ## Como executar os testes
-Caso o projeto use Maven:
-- Para rodar todos os testes:
+Se o projeto usa Maven:
+- Instalar dependências e rodar todos os testes:
   mvn test
 
-## Dependências recomendadas
-- JUnit 5 (jupiter)
+Se o projeto usa Gradle:
+- Com wrapper:
+  ./gradlew test
+- Ou com Gradle instalado:
+  gradle test
 
-## Convenções e estrutura
-- src/main/java — implementação
-- src/test/java — testes
+Também é possível rodar testes direto pela IDE (run → Test) ou utilizando o JUnit Platform Console, se configurado.
+
+## Boas práticas ao adicionar exercícios
+- Crie uma pasta por exercício/aula com um README explicando:
+  - enunciado curto
+  - requisitos
+  - instruções de execução
+- Separe código de produção (src/main/java) de testes (src/test/java)
+- Dê nomes descritivos às classes de teste, por exemplo: NomeDaClasseTest
+- Escreva testes pequenos, independentes e legíveis
+- Documente suposições e limites nos comentários do exercício
+
+## Convenções de commits e branches
+- Branch principal: main
+- Feature/Exercício: use branches com nomes como `exercicio/aula-03-nome`
+- Mensagens de commit: sejam curtas e descritivas, ex: "feat: adicionar exercícios da aula 03 - cálculos"
+
+## Como contribuir
+1. Fork o repositório
+2. Crie uma branch para sua alteração: `git checkout -b exercicio/aula-04-meu-exercicio`
+3. Adicione o exercício e testes
+4. Abra um Pull Request descrevendo:
+   - que aula/exercício adicionou
+   - como rodar os testes
+   - observações importantes
+
+## Exemplos úteis
+- Exemplo de nome de teste: CalculatorTest.java
+- Exemplo de método de teste:
+  - @Test
+    void soma_deve_retornar_valor_correto() { ... }
+
+## Contato
+Maintainer: Juliana Forbici (JulianaForbici)
